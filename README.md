@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>BEVBert: Multimodal Map Pre-training for Language-guided Navigation</h1>
+<h1>BEVBert: Multimodal Map Pre-training for <br /> Language-guided Navigation</h1>
 
 <div>
     <a href='https://marsaki.github.io/' target='_blank'>Dong An</a>;
