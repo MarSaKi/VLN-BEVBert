@@ -27,4 +27,90 @@ Large-scale pre-training has shown promising results on the vision-and-language 
 
 ![](assets/method.png)
 
-Code coming soon!
+## TODOs
+
+* [X] Release VLN (R2R, RxR, REVERIE) code.
+* [ ] Release VLN-CE (R2R-CE) code.
+* [ ] Release data preprocessing code and datasets.
+* [ ] Release checkpoints.
+
+## Setup
+
+### Installation
+
+1. Create a virtual environment. We develop this project with Python 3.6.
+
+   ```bash
+   conda env create -f environment.yaml
+   ```
+
+2. Install the latest version of [Matterport3DSimulator](https://github.com/peteanderson80/Matterport3DSimulator) (including the Matterport3D RGBD datasets for image preprocessing).
+
+
+3. Download the Matterport3D scene meshes
+
+```bash
+# run with python 2.7
+python download_mp.py --task habitat -o data/scene_datasets/mp3d/
+# Extract to: ./data/scene_datasets/mp3d/{scene}/{scene}.glb
+```
+
+`download_mp.py` must be obtained from the Matterport3D [project webpage](https://niessner.github.io/Matterport/).
+  
+Follow the [Habitat Installation Guide](https://github.com/facebookresearch/habitat-lab#installation) to install [`habitat-sim`](https://github.com/facebookresearch/habitat-sim) and [`habitat-lab`](https://github.com/facebookresearch/habitat-lab). We use version [`v0.1.7`](https://github.com/facebookresearch/habitat-lab/releases/tag/v0.1.7) in our experiments. In brief:
+
+4. Install `habitat-sim` for a machine with multiple GPUs or without an attached display (i.e. a cluster):
+
+   ```bash
+   conda install -c aihabitat -c conda-forge habitat-sim=0.1.7 headless
+   ```
+
+5. Clone `habitat-lab` from the github repository and install. The command below will install the core of Habitat Lab as well as the habitat_baselines.
+
+   ```bash
+   git clone --branch v0.1.7 git@github.com:facebookresearch/habitat-lab.git
+   cd habitat-lab
+   python setup.py develop --all # install habitat and habitat_baselines
+   ```
+
+## Running
+
+Pre-training
+
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_r2r.bash 2333  # R2R
+CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_rxr.bash 2333  # RxR
+CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_rvr.bash 2333  # REVERIE
+```
+
+Fine-tuning and Testing
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/ft_r2r.bash 2333  # R2R
+CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/ft_rxr.bash 2333  # RxR
+CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/ft_rvr.bash 2333  # REVERIE
+```
+
+# Contact Information
+
+* dong DOT an AT cripac DOT ia DOT ac DOT cn, [Dong An](https://marsaki.github.io/)
+* yhuang AT nlpr DOT ia DOT ac DOT cn, [Yan Huang](https://yanrockhuang.github.io/)
+
+# Acknowledge
+
+Our implementations are partially inspired by [DUET](https://github.com/cshizhe/VLN-DUET), [S-MapNet](https://github.com/vincentcartillier/Semantic-MapNet) and [ETPNav](https://github.com/MarSaKi/ETPNav).
+
+Thank them for open sourcing their great works!
+
+# Citation
+
+If you find this repository is useful, please consider citing our paper:
+
+```
+@article{an2022bevbert,
+  title={BEVBert: Multimodal Map Pre-training for Language-guided Navigation},
+  author={An, Dong and Qi, Yuankai and Li, Yangguang and Huang, Yan and Wang, Liang and Tan, Tieniu and Shao, Jing},
+  journal={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  year={2023}
+}
+```
+
