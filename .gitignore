@@ -1,0 +1,23 @@
+.ftpignore
+.ftpconfig
+.vscode
+
+# Byte-compiled / optimized / DLL files
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+*$py.class
+*.swp
+*.png
+*.zip
+batchscript*
+phoenix*
+
+/datasets
+/notebooks
+
+build
+snap_ft
+snap_pt
+img_features
+ckpts

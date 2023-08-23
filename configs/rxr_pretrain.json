@@ -1,0 +1,48 @@
+{
+    "model_config": "",
+    "checkpoint": null,
+    "output_dir": "",
+    "mrc_mask_prob": 0.15,
+    "bev_mrc_mask_prob": 0.15,
+    "max_txt_len": 200,
+    "train_batch_size": 16,
+    "val_batch_size": 16,
+    "val_sample_num": 5000,
+    "gradient_accumulation_steps": 1,
+    "learning_rate": 5e-05,
+    "valid_steps": 5000,
+    "log_steps": 2000,
+    "num_train_steps": 200000,
+    "optim": "adamw",
+    "betas": [
+        0.9,
+        0.98
+    ],
+    "dropout": 0.1,
+    "weight_decay": 0.01,
+    "grad_norm": 5.0,
+    "warmup_steps": 10000,
+    "seed": 0,
+    "fp16": false,
+    "n_workers": 4,
+    "pin_mem": true,
+    "init_pretrained": "roberta",
+
+    "train_datasets": {
+        "R2R": {
+            "name": "RxR",
+            "train_traj_files": ["datasets/RxR/annotations/pretrain/rxr_train_guide_enc_xlmr.jsonl",
+                                 "datasets/RxR/annotations/pretrain/rxr_marky_train_guide_enc_xlmr.jsonl"],
+            "val_seen_traj_files": ["datasets/RxR/annotations/pretrain/rxr_val_seen_guide_enc_xlmr.jsonl"],
+            "val_unseen_traj_files": ["datasets/RxR/annotations/pretrain/rxr_val_unseen_guide_enc_xlmr.jsonl"],
+            "connectivity_dir": "datasets/R2R/connectivity",
+            "img_ft_file": "datasets/R2R/features/pth_vit_base_patch16_224_clip.hdf5",
+            "rgb_file": "img_features/vit_b16_224_clip_patch.hdf5",
+            "depth_file": "img_features/depth_14x14.hdf5",
+            "sem_file": "img_features/semantic_14x14.hdf5",
+            "scanvp_cands_file": "datasets/R2R/annotations/scanvp_candview_relangles.json",
+            "tasks": null,
+            "mix_ratio": null
+        }
+    }
+}
