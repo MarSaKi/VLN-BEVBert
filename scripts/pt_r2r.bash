@@ -1,7 +1,7 @@
 
 NODE_RANK=0
 NUM_GPUS=4
-task_ratio=mlm.5.sap.5.sem.1
+task_ratio=mlm.5.sap.5.masksem.1
 outdir=snap_pt/r2r/${task_ratio}
 
 # train

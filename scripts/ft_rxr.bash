@@ -10,7 +10,7 @@ obj_ft_dim=768
 ngpus=4
 seed=0
 
-pref=mlm.5.sap.5.sem.1
+pref=mlm.5.sap.5.masksem.1
 iter=xxx    # the selected iteration in pretraining
 name=${pref}.${iter}
 
