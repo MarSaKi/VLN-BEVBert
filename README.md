@@ -32,7 +32,7 @@ Large-scale pre-training has shown promising results on the vision-and-language 
 * [X] Release VLN (R2R, RxR, REVERIE) code.
 * [ ] Release VLN-CE (R2R-CE) code.
 * [X] Data preprocessing code.
-* [ ] Release checkpoints and preprocessed datasets.
+* [X] Release checkpoints and preprocessed datasets.
 
 ## Setup
 
@@ -44,15 +44,13 @@ Large-scale pre-training has shown promising results on the vision-and-language 
    conda env create -f environment.yaml
    ```
 2. Install the latest version of [Matterport3DSimulator](https://github.com/peteanderson80/Matterport3DSimulator), including the Matterport3D RGBD datasets (for step 6).
-3. Download the Matterport3D scene meshes
+3. Download the Matterport3D scene meshes. `download_mp.py` must be obtained from the Matterport3D [project webpage](https://niessner.github.io/Matterport/). `download_mp.py` is also used for downloading RGBD datasets in step 2.
 
 ```bash
 # run with python 2.7
 python download_mp.py --task habitat -o data/scene_datasets/mp3d/
 # Extract to: ./data/scene_datasets/mp3d/{scene}/{scene}.glb
 ```
-
-`download_mp.py` must be obtained from the Matterport3D [project webpage](https://niessner.github.io/Matterport/).
 
 Follow the [Habitat Installation Guide](https://github.com/facebookresearch/habitat-lab#installation) to install [`habitat-sim`](https://github.com/facebookresearch/habitat-sim) and [`habitat-lab`](https://github.com/facebookresearch/habitat-lab). We use version [`v0.1.7`](https://github.com/facebookresearch/habitat-lab/releases/tag/v0.1.7) in our experiments. In brief:
 
@@ -68,8 +66,7 @@ Follow the [Habitat Installation Guide](https://github.com/facebookresearch/habi
    cd habitat-lab
    python setup.py develop --all # install habitat and habitat_baselines
    ```
-
-6. Grid feature preprocessing for metric mapping (~100G). 
+6. Grid feature preprocessing for metric mapping (~100G).
 
    ```bash
    python precompute_features/grid_mp3d_clip.py       # R2R, RxR
@@ -78,10 +75,13 @@ Follow the [Habitat Installation Guide](https://github.com/facebookresearch/habi
    python precompute_features/grid_depth.py           # grid depth
    python precompute_features/grid_sem.py             # grid semantic for pre-training
    ```
+7. Download preprocessed instruction datasets and trained weights [[link]](https://drive.google.com/file/d/1jYg_dMlCDZoOtrkmmq40k-_-m6xerdUI/view?usp=sharing). The directory structure has been organized.
+
+Good luck on your VLN journey with BEVBert!
 
 ## Running
 
-Pre-training
+Pre-training.
 
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_r2r.bash 2333  # R2R
@@ -89,7 +89,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_rxr.bash 2333  # RxR
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_rvr.bash 2333  # REVERIE
 ```
 
-Fine-tuning and Testing
+Fine-tuning and Testing, the trained weights can be found in step 7.
 
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/ft_r2r.bash 2333  # R2R
@@ -113,7 +113,7 @@ Thank them for open sourcing their great works!
 If you find this repository is useful, please consider citing our paper:
 
 ```
-@article{an2022bevbert,
+@article{an2023bevbert,
   title={BEVBert: Multimodal Map Pre-training for Language-guided Navigation},
   author={An, Dong and Qi, Yuankai and Li, Yangguang and Huang, Yan and Wang, Liang and Tan, Tieniu and Shao, Jing},
   journal={Proceedings of the IEEE/CVF International Conference on Computer Vision},
