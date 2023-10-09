@@ -23,3 +23,6 @@ img_features
 img_features_bak
 ckpts
 zip.bash
+
+bevbert_ce/data
+bevbert_ce/ckpt
