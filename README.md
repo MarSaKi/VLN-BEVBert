@@ -30,7 +30,7 @@ Large-scale pre-training has shown promising results on the vision-and-language 
 ## TODOs
 
 * [X] Release VLN (R2R, RxR, REVERIE) code.
-* [ ] Release VLN-CE (R2R-CE) code.
+* [X] Release VLN-CE (R2R-CE) code.
 * [X] Data preprocessing code.
 * [X] Release checkpoints and preprocessed datasets.
 
@@ -74,8 +74,9 @@ Follow the [Habitat Installation Guide](https://github.com/facebookresearch/habi
    python precompute_features/grid_habitat_clip.py    # R2R-CE
    python precompute_features/grid_depth.py           # grid depth
    python precompute_features/grid_sem.py             # grid semantic for pre-training
+   python precompute_features/save_depth_feature.py   # depth features for R2R-CE pre-training
    ```
-7. Download preprocessed instruction datasets and trained weights [[link]](https://drive.google.com/file/d/1jYg_dMlCDZoOtrkmmq40k-_-m6xerdUI/view?usp=sharing). The directory structure has been organized.
+7. Download preprocessed instruction datasets and trained weights [[link]](https://drive.google.com/file/d/1jYg_dMlCDZoOtrkmmq40k-_-m6xerdUI/view?usp=sharing). The directory structure has been organized. For R2R-CE experiments, follow [ETPNav](https://github.com/MarSaKi/ETPNav) to configure VLN-CE datasets in `bevbert_ce/data` foler, and put the trained CE weights [[link]](https://drive.google.com/file/d/1-2u1NWmwpX09Rg7uT5mABo-CBTsLthGm/view?usp=sharing) in `bevbert_ce/ckpt`.
 
 Good luck on your VLN journey with BEVBert!
 
@@ -87,6 +88,9 @@ Pre-training.
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_r2r.bash 2333  # R2R
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_rxr.bash 2333  # RxR
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_rvr.bash 2333  # REVERIE
+
+cd bevbert_ce/pretrain 
+CUDA_VISIBLE_DEVICES=0,1,2,3 bash run_pt/run_r2r.bash 2333  # R2R-CE
 ```
 
 Fine-tuning and Testing, the trained weights can be found in step 7.
@@ -95,6 +99,9 @@ Fine-tuning and Testing, the trained weights can be found in step 7.
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/ft_r2r.bash 2333  # R2R
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/ft_rxr.bash 2333  # RxR
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/ft_rvr.bash 2333  # REVERIE
+
+cd bevbert_ce
+CUDA_VISIBLE_DEVICES=0,1,2,3 bash run_r2r/main.bash [train/eval/infer] 2333  # R2R-CE
 ```
 
 # Contact Information
