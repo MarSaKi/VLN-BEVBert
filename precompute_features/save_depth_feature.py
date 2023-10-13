@@ -136,10 +136,10 @@ def build_feature_file(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', default='resnet50')
-    parser.add_argument('--checkpoint_file', default='/data/andong/vlnce_dataset/data/ddppo-models/gibson-2plus-resnet50.pth')
+    parser.add_argument('--checkpoint_file', default='/data/andong/vlnce_dataset/data/ddppo-models/gibson-2plus-resnet50.pth') # the weight of DDPPO, gibson-2plus-resnet50.pth can be downloaded from https://github.com/facebookresearch/habitat-lab/tree/main/habitat-baselines/habitat_baselines/rl/ddppo
     parser.add_argument('--connectivity_dir', default='datasets/R2R/connectivity')
     parser.add_argument('--scan_dir', default='/data/andong/Matterport/v1/scans')
-    parser.add_argument('--img_db', default='img_features/habitat_256x256_vfov60_depth.hdf5')
+    parser.add_argument('--img_db', default='img_features/habitat_256x256_vfov60_depth.hdf5')   # habitat data images, can get from "precompute_features/save_depth_img.py", remember to adjust vfov to 60
     parser.add_argument('--out_image_logits', action='store_true', default=False)
     parser.add_argument('--output_file', default='img_features/ddppo_resnet50_depth_features.hdf5')
     parser.add_argument('--batch_size', default=36, type=int)
