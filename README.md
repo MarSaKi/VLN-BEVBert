@@ -69,12 +69,16 @@ Follow the [Habitat Installation Guide](https://github.com/facebookresearch/habi
 6. Grid feature preprocessing for metric mapping (~100G).
 
    ```bash
-   python precompute_features/grid_mp3d_clip.py       # R2R, RxR
-   python precompute_features/grid_mp3d_imagenet.py   # REVERIE
-   python precompute_features/grid_habitat_clip.py    # R2R-CE
-   python precompute_features/grid_depth.py           # grid depth
-   python precompute_features/grid_sem.py             # grid semantic for pre-training
-   python precompute_features/save_depth_feature.py   # depth features for R2R-CE pre-training
+   # for R2R, RxR, REVERIE
+   python precompute_features/grid_mp3d_clip.py
+   python precompute_features/grid_mp3d_imagenet.py
+   python precompute_features/grid_depth.py
+   python precompute_features/grid_sem.py
+
+   # for R2R-CE pre-training
+   python precompute_features/grid_habitat_clip.py
+   python precompute_features/save_habitat_img.py --img_type depth
+   python precompute_features/save_depth_feature.py
    ```
 7. Download preprocessed instruction datasets and trained weights [[link]](https://drive.google.com/file/d/1jYg_dMlCDZoOtrkmmq40k-_-m6xerdUI/view?usp=sharing). The directory structure has been organized. For R2R-CE experiments, follow [ETPNav](https://github.com/MarSaKi/ETPNav) to configure VLN-CE datasets in `bevbert_ce/data` foler, and put the trained CE weights [[link]](https://drive.google.com/file/d/1-2u1NWmwpX09Rg7uT5mABo-CBTsLthGm/view?usp=sharing) in `bevbert_ce/ckpt`.
 
