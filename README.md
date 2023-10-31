@@ -86,7 +86,7 @@ Good luck on your VLN journey with BEVBert!
 
 ## Running
 
-Pre-training.
+Pre-training. Download precomputed image features [[link]](https://drive.google.com/file/d/1S8jD1Mln0mbTsB5I_i2jdQ8xBbnw-Dyr/view?usp=sharing) into folder `img_features`.
 
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash scripts/pt_r2r.bash 2333  # R2R
