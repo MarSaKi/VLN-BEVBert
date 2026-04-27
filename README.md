@@ -46,13 +46,13 @@ Large-scale pre-training has shown promising results on the vision-and-language 
 2. Install the latest version of [Matterport3DSimulator](https://github.com/peteanderson80/Matterport3DSimulator), including the Matterport3D RGBD datasets (for step 6).
 3. Download the Matterport3D scene meshes. `download_mp.py` must be obtained from the Matterport3D [project webpage](https://niessner.github.io/Matterport/). `download_mp.py` is also used for downloading RGBD datasets in step 2.
 
-```bash
-# run with python 2.7
-python download_mp.py --task habitat -o data/scene_datasets/mp3d/
-# Extract to: ./data/scene_datasets/mp3d/{scene}/{scene}.glb
-```
+   ```bash
+   # run with python 2.7
+   python download_mp.py --task habitat -o data/scene_datasets/mp3d/
+   # Extract to: ./data/scene_datasets/mp3d/{scene}/{scene}.glb
+   ```
 
-Follow the [Habitat Installation Guide](https://github.com/facebookresearch/habitat-lab#installation) to install [`habitat-sim`](https://github.com/facebookresearch/habitat-sim) and [`habitat-lab`](https://github.com/facebookresearch/habitat-lab). We use version [`v0.1.7`](https://github.com/facebookresearch/habitat-lab/releases/tag/v0.1.7) in our experiments. In brief:
+   Follow the [Habitat Installation Guide](https://github.com/facebookresearch/habitat-lab#installation) to install [`habitat-sim`](https://github.com/facebookresearch/habitat-sim) and [`habitat-lab`](https://github.com/facebookresearch/habitat-lab). We use version [`v0.1.7`](https://github.com/facebookresearch/habitat-lab/releases/tag/v0.1.7) in our experiments. In brief:
 
 4. Install `habitat-sim` for a machine with multiple GPUs or without an attached display (i.e. a cluster):
 
@@ -66,8 +66,14 @@ Follow the [Habitat Installation Guide](https://github.com/facebookresearch/habi
    cd habitat-lab
    python setup.py develop --all # install habitat and habitat_baselines
    ```
-6. Grid feature preprocessing for metric mapping (~100G).
+6. Grid feature preprocessing for metric mapping.
+- [Recommended] You could directly downlaod the preprocessed features from [ModelScope](https://modelscope.cn/datasets/admagic/BEVBert/files):
+   ```bash
+   pip install modelscope
+   modelscope download --dataset admagic/BEVBert --local_dir ./img_features
+   ```
 
+- [Optional] Or collect the features by youself:
    ```bash
    # for R2R, RxR, REVERIE
    python precompute_features/grid_mp3d_clip.py
